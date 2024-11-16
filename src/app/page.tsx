@@ -56,7 +56,7 @@ export default function Home() {
         <Button onClick={handleCurrentLocation} className="mb-4">
           Use Current Location
         </Button>
-        <LoadScript googleMapsApiKey="AIzaSyClVxT2CUPTiAqHlomBjJxUNJjraBz8oJA" libraries={["places"]}>
+        <LoadScript googleMapsApiKey={process.env.GOOGLEAPIKEY} libraries={["places"]}>
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
             <input
               type="text"
