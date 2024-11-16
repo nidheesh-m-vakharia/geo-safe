@@ -2,8 +2,11 @@
 
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover"
-import Image from "next/image";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { LoadScript, Autocomplete } from "@react-google-maps/api";
 import styles from "./page.module.css";
 
@@ -13,8 +16,9 @@ interface Location {
 }
 
 export default function Home() {
-  let location = useRef<Location | null>(null);
-  const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete | null>(null);
+  const location = useRef<Location | null>(null);
+  const [autocomplete, setAutocomplete] =
+    useState<google.maps.places.Autocomplete | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const handleCurrentLocation = () => {
@@ -25,11 +29,10 @@ export default function Home() {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           };
-          
         },
         (error) => {
           console.error("Error getting current location:", error);
-        }
+        },
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
@@ -45,7 +48,7 @@ export default function Home() {
     if (autocomplete !== null) {
       const place = autocomplete.getPlace();
       if (place.geometry?.location) {
-        location.current={
+        location.current = {
           latitude: place.geometry.location.lat(),
           longitude: place.geometry.location.lng(),
         };
@@ -67,37 +70,44 @@ export default function Home() {
         <section className={styles.introSection}>
           <h2 className={styles.introTitle}>Welcome to GeoSafe</h2>
           <p className={styles.introText}>
-            GeoSafe helps you stay informed about the safety of your current location.
-            Whether you're traveling or staying local, we've got you covered.
+            GeoSafe helps you stay informed about the safety of your current
+            location. Whether you are traveling or staying local, we have got
+            you covered.
           </p>
           <Popover>
-            <PopoverTrigger className={styles.safetyButton} >
-            Check Your Safety Now
+            <PopoverTrigger className={styles.safetyButton}>
+              Check Your Safety Now
             </PopoverTrigger>
             <PopoverContent className={styles.locationSection}>
-            <Button className={styles.locationTitle} onClick={handleCurrentLocation}>Your Current Location</Button>
-            {isLoaded && (
-              <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-                <input
-                type="text"
-                placeholder="Enter location manually"
-                className="p-2 border border-gray-300 rounded"
-              />
-              </Autocomplete>   
-              )}     
+              <Button
+                className={styles.locationTitle}
+                onClick={handleCurrentLocation}
+              >
+                Your Current Location
+              </Button>
+              {isLoaded && (
+                <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+                  <input
+                    type="text"
+                    placeholder="Enter location manually"
+                    className="rounded border border-gray-300 p-2"
+                  />
+                </Autocomplete>
+              )}
             </PopoverContent>
           </Popover>
-          
         </section>
-
-        
 
         <section className={styles.featuresSection}>
           <h3 className={styles.featuresTitle}>Why Choose GeoSafe?</h3>
           <ul className={styles.featuresList}>
             <li className={styles.featureItem}>Real-time Safety Alerts</li>
-            <li className={styles.featureItem}>Accurate Location-based Information</li>
-            <li className={styles.featureItem}>User-friendly and Easy to Use</li>
+            <li className={styles.featureItem}>
+              Accurate Location-based Information
+            </li>
+            <li className={styles.featureItem}>
+              User-friendly and Easy to Use
+            </li>
             <li className={styles.featureItem}>Available Anytime, Anywhere</li>
           </ul>
         </section>
@@ -108,10 +118,11 @@ export default function Home() {
           &copy; 2024 GeoSafe. All rights reserved. Need help?
         </p>
       </footer>
-      <LoadScript 
-        googleMapsApiKey="AIzaSyClVxT2CUPTiAqHlomBjJxUNJjraBz8oJA" 
+      <LoadScript
+        googleMapsApiKey="AIzaSyClVxT2CUPTiAqHlomBjJxUNJjraBz8oJA"
         libraries={["places"]}
-        onLoad={() => setIsLoaded(true)}/>
+        onLoad={() => setIsLoaded(true)}
+      />
     </div>
   );
 }
