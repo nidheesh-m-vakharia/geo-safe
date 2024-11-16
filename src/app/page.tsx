@@ -70,8 +70,8 @@ export default function Home() {
           <h2 className="mb-3 text-3xl">Welcome to GeoSafe</h2>
           <p className="mb-5 text-lg leading-relaxed">
             GeoSafe helps you stay informed about the safety of your current
-            location. Whether you are traveling or staying local, we have got you
-            covered.
+            location. Whether you are traveling or staying local, we have got
+            you covered.
           </p>
           <Popover>
             <PopoverTrigger className="cursor-pointer rounded-lg border-none bg-green-600 px-4 py-2 text-lg text-white transition duration-300 hover:bg-green-700">
