@@ -120,7 +120,7 @@ export default function Home() {
       </footer>
 
       <LoadScript
-        googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY"
+        googleMapsApiKey={process.env.GOOGLEAPIKEY}
         libraries={["places"]}
         onLoad={() => setIsLoaded(true)}
       />
