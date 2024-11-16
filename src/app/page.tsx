@@ -39,7 +39,7 @@ export default function Home() {
   const onPlaceChanged = () => {
     if (autocomplete !== null) {
       const place = autocomplete.getPlace();
-      if (place.geometry) {
+      if (place.geometry?.location) {
         setLocation({
           latitude: place.geometry.location.lat(),
           longitude: place.geometry.location.lng(),
@@ -53,7 +53,6 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1 className="Logo">GEOSAFE</h1>
         <Button onClick={handleCurrentLocation} className="mb-4">
           Use Current Location
         </Button>
@@ -74,5 +73,6 @@ export default function Home() {
         )}
       </main>
     </div>
+    
   );
 }
